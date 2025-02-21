@@ -1,0 +1,24 @@
+##数据库
+database:
+  host: 127.0.0.1
+  port: 3308
+  user: yondIb
+  password: IbTraYond!2025
+  dbName: stock1
+##新浪接口
+sina:
+  header: http://finance.sina.com.cn
+  baseUrl: http://hq.sinajs.cn/list=
+##Quandl配置
+quandl:
+  apiKey: jzyLvZYU7ZpkEKf_yaCX
+##polygon.io 配置
+polygon:
+  apiKey:  220JWD_JqNPzMtW8yFzUqf5c9HYVepg8
+##OpenFIFI 配置
+openFIGI:
+  apiKey: 21735960-703d-48d3-bd5a-7d123119d796
+##Telegram 配置
+telegram:
+  chatId: 7928824993
+  tgToken: 78887bix58514:AAE9fCzdUfLoaMI5O71k4p9_P38z1s_yHUg
