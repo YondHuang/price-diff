@@ -24,8 +24,8 @@ dataIns = DataBase(sina_config_file)
 # stock_symbols = [{'code': 'ACHR'},{'code': 'FI'}]
 #sql = "select code from stock_basic where is_closed = 0 and code not in (select DISTINCT code from stock_record)"
 # sql = "select code from stock_basic where code not in (select DISTINCT code from stock_record UNION SELECT code from no_data_stock)"
-# sql = "select DISTINCT code from stock_basic"
-sql = "select code from stock_basic where code not in (select DISTINCT code from stock_record where c_date='2025-02-20')"
+sql = "select DISTINCT code from stock_basic"
+# sql = "select code from stock_basic where code not in (select DISTINCT code from stock_record where c_date='2025-02-20')"
 stock_symbols = dataIns.getSqlData(sql)
 symbols = [item['code'] for item in stock_symbols]
 
@@ -64,7 +64,7 @@ for symbol in symbols:
     bars = ib.reqHistoricalData(
         contract,
         endDateTime=end_time,  # 修正格式
-        durationStr='1 D',  # 查询过去 2 天数据
+        durationStr='4 D',  # 查询过去 2 天数据
         barSizeSetting='1 day',  # 按日获取数据
         whatToShow='TRADES',  # 交易数据
         useRTH=True,  # 仅使用正常交易时间的数据
@@ -128,7 +128,7 @@ for symbol in symbols:
 
     # 转换 DataFrame 中的相关列
     df = convert_to_decimal(df, price_columns)
-    # print(df)
+    print(df)
 
     # 转换为符合批量插入格式的 values
     values = df[['code', 'c_date', 'o_price', 'h_price', 'l_price', 'c_price', 'vol', 'remark']].values.tolist()
