@@ -116,7 +116,7 @@ for symbol in symbols:
 
     # 识别杯柄形态的突破点
     def identify_cup_handle_breakout(data, cup_up=0.015, cup_depth_threshold=0.06, handle_depth_threshold=0.08,
-                                     volume_threshold=1.1, min_cup_days=13, min_dur_day = 6):
+                                     volume_threshold=1.1, min_cup_days=13, min_dur_day = 3):
         """
         识别杯柄形态的突破点，自动确定杯子的开始和结束日期。
         :param data: 股票数据

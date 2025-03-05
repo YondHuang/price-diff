@@ -46,4 +46,10 @@ nbdist/
 
 ./config.yml
 
+/utils/run/app.log
+
 ./logging.conf
+
+README.md
+
+股票SQL查询.sql
