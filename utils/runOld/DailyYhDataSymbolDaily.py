@@ -1,6 +1,6 @@
-import yfinance as yf
 import logging
 import logging.config
+import yfinance as yf
 import pandas as pd
 from utils.ExtrsUtil import ExtrsUtil
 from plugins.YahooFin import YahooFin
@@ -10,20 +10,28 @@ from data.DataBase import DataBase
 logging.config.fileConfig('../../logging.conf')
 
 """
-查询数据库所有stock_basic的股票代码，把最近一天日期的价格数据都写入数据库stock_record
+查询指定名称的股票代码，把最近一天日期的价格数据都写入数据库stock_record
 """
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
-# # query_conditions = {"age": 30, "city": "New York"}
-query_conditions = {"is_closed": 0}
-stock_symbols = dataIns.getCommonData('stock_basic', ['code'], query_conditions, '', '')
-
+# 示例股票列表
+stock_symbols = [{'code': 'ACHR'},{'code': 'FI'}]
 #print(stock_symbols)
+
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
+
+
 # 使用列表推导式提取 code 的值
-symbols = [item['code'] for item in stock_symbols]
+# symbols = [item['code'] for item in stock_symbols]
+symbols = [
+'ARCH',
+'BKE',
+'SMAR',
+'BRK.AQ',
+'BRK.AX',
+'CRD.BK'
+]
 print(symbols)
-print(len(symbols))
 
 # 创建一个空列表，用于存储所有股票的信息
 values = []
@@ -52,7 +60,7 @@ for symbol in symbols:
     pd.set_option('display.width', 1000)        # 设置显示宽度
     # print(df.index)
     # print(df.columns)
-    print(df)
+    # print(df)
 
     if df.empty:  # 检查数据是否为空
         print(f"No data found for {symbol}. Skipping...")
@@ -104,4 +112,5 @@ for symbol in symbols:
     # 转换为符合批量插入格式的 values
     values = df[['code', 'c_date', 'o_price', 'h_price', 'l_price', 'c_price', 'vol', 'remark']].values.tolist()
 
-    # dataIns.saveBatchCommonData('stock_record', fields, values)
+    dataIns.saveBatchCommonData('stock_record', fields, values)
+

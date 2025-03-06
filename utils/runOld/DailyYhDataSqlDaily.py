@@ -13,8 +13,8 @@ logging.config.fileConfig('../../logging.conf')
 查询数据库所有stock_basic的股票代码，把最近一天日期的价格数据都写入数据库stock_record
 """
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 # # query_conditions = {"age": 30, "city": "New York"}
 query_conditions = {"is_closed": 0}
 stock_symbols = dataIns.getCommonData('stock_basic', ['code'], query_conditions, '', '')
@@ -35,17 +35,24 @@ for symbol in symbols:
     print(f"Fetching data for {symbol}...")
     yfIns = YahooFin()
     """
+    ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', 'ytd', 'max']
+    1d（1天）表示获取当天的历史数据，通常按分钟或更细粒度的间隔提供数据（如果可用）。
+    5d（5天）表示获取过去 5 天的数据，通常是按分钟、小时或日间隔的数据。
+    1mo（1个月）获取过去 1 个月的数据，通常按日间隔。
+    3mo（3个月）获取过去 3 个月的数据，通常按日间隔。
+    6mo（6个月）获取过去 6 个月的数据，按日间隔。
+    1y（1年）获取过去 1 年的数据，按日间隔。
+    2y（2年）获取过去 2 年的数据，按日间隔。
+    5y（5年）获取过去 5 年的数据，按日间隔。
     ytd（Year-to-Date）获取从今年年初到当前日期的数据。时间间隔通常为按日。
     max（最大可用范围）获取该资产可以追溯到的最早时间的数据，直到当前日期。
     """
-    startDate = '2025-02-06'
-    endDate = '2025-02-08'
-    df = yfIns.fetchStartEndData(symbol, startDate, endDate, interval='1d')
+    df = yfIns.fetchData(symbol, period='1d', interval='1d')
     pd.set_option('display.max_columns', None)  # 显示所有列
     pd.set_option('display.width', 1000)        # 设置显示宽度
     # print(df.index)
     # print(df.columns)
-    # print(df)
+    print(df)
 
     if df.empty:  # 检查数据是否为空
         print(f"No data found for {symbol}. Skipping...")
@@ -97,4 +104,4 @@ for symbol in symbols:
     # 转换为符合批量插入格式的 values
     values = df[['code', 'c_date', 'o_price', 'h_price', 'l_price', 'c_price', 'vol', 'remark']].values.tolist()
 
-    dataIns.saveBatchCommonData('stock_record', fields, values)
+    # dataIns.saveBatchCommonData('stock_record', fields, values)

@@ -6,8 +6,8 @@ from data.DataBase import DataBase
 # 加载配置文件
 logging.config.fileConfig('../logging.conf')
 
-sina_config_file = '../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../config.yml'
+dataIns = DataBase(config_file)
 
 
 # 请求URL模板，page 参数会在循环中动态替换

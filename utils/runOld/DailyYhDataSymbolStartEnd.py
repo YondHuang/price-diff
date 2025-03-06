@@ -20,8 +20,8 @@ logging.config.fileConfig('../../logging.conf')
 """
 查询指定名称的股票代码，把最近一天日期的价格数据都写入数据库stock_record
 """
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 # 设置栈空间为 10 MB
 #ctypes.windll.kernel32.SetThreadStackGuarantee(ctypes.c_ulong(10 * 1024 * 1024))

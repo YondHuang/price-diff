@@ -9,8 +9,8 @@ api_key = '220JWD_JqNPzMtW8yFzUqf5c9HYVepg8'
 # 获取股票和 ETF 符号，排除加密货币
 #url = f'https://api.polygon.io/v3/reference/tickers?apiKey={api_key}'
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 # 设置栈空间为 10 MB
 #ctypes.windll.kernel32.SetThreadStackGuarantee(ctypes.c_ulong(10 * 1024 * 1024))

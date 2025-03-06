@@ -20,8 +20,8 @@ previous_date = current_date - timedelta(days=1)
 formatted_date = previous_date.strftime('%Y-%m-%d')
 formatted_date = '2025-03-04'
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 inWhere = f"(select code from stock_extra where c_date='{formatted_date}' and num = {N})"
 print(inWhere)
 stock_symbols = dataIns.getCommonInData('stock_basic', ['code'], False, 'code', inWhere, {})

@@ -13,8 +13,8 @@ ib.connect('127.0.0.1', 7497, clientId=1)  # 7497 是纸交易端口，7496 是�
 # 加载配置文件
 logging.config.fileConfig('../../logging.conf')
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 # 设置栈空间为 10 MB
 #ctypes.windll.kernel32.SetThreadStackGuarantee(ctypes.c_ulong(10 * 1024 * 1024))

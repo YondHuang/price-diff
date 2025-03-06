@@ -14,8 +14,8 @@ logging.config.fileConfig('../../logging.conf')
 查询数据库所有stock_basic的股票代码，把所有日期的价格数据都写入数据库stock_record
 """
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 # # query_conditions = {"age": 30, "city": "New York"}
 query_conditions = {"is_closed": 0}
 # query_conditions = {}

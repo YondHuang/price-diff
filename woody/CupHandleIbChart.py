@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 import pandas as pd
 from ib_insync import Stock, IB
+import yaml
 
 # 获取股票数据
 # stock = yf.Ticker("ETNB")
@@ -15,7 +16,14 @@ from ib_insync import Stock, IB
 # data = stock.history(period="3mo", interval="1d")
 
 ib = IB()
-ib.connect('104.194.79.173', 4001, clientId=1, timeout=30)  # 7497 是纸交易端口，7496 是真实交易端口
+# 7497 是纸交易端口，7496 是真实交易端口
+config_file = '../config.yml'
+
+# 读取YAML配置文件
+with open(config_file, 'r', encoding='utf-8', errors='ignore') as file:
+    config = yaml.safe_load(file)
+# 7497 是纸交易端口，7496 是真实交易端口
+ib.connect(config['IBKR']['ip'], config['IBKR']['port'], clientId=1, timeout=30)
 
 # symbol = "ETNB"
 # symbol = "ACMR"

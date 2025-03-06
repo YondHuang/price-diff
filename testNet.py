@@ -5,8 +5,8 @@ code = 'sh600519'
 code = 'gb_xop'
 code = 'f_162411'
 
-# sina_config_file = 'config.yml'
-# sina_instance = Sina(sina_config_file)
+# config_file = 'config.yml'
+# sina_instance = Sina(config_file)
 # data = sina_instance.getStockData(code)
 #
 # db = DataBase(Sina.config_file)
@@ -20,8 +20,8 @@ def get_sina_price(symbol):
     :return: 返回实时价格
     """
 
-    sina_config_file = 'config.yml'
-    sina_instance = Sina(sina_config_file)
+    config_file = 'config.yml'
+    sina_instance = Sina(config_file)
     data = sina_instance.getStockData(symbol)
     print(data)
 

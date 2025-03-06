@@ -6,8 +6,8 @@ import numpy as np
 # 调用函数计算 EXTRS，假设 N = 3
 N = 250
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 stock_symbols = [{'code': 'FI'}]
 symbols = [item['code'] for item in stock_symbols]

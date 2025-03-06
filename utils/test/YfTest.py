@@ -157,8 +157,8 @@ for ticker in tickers:
 
 
 print(values)
-sina_config_file = '../../config.yml'
-db = DataBase(sina_config_file)
+config_file = '../../config.yml'
+db = DataBase(config_file)
 fields = ['code', 'name', 'gics_sector', 'gics_sub_industry', 'address', 'city', 'state', 'zip', 'country',
           'phone', 'website', 'founded', 'is_wilshire5000']
 

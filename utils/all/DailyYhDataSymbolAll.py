@@ -18,8 +18,8 @@ logging.config.fileConfig('../../logging.conf')
 stock_symbols = [{'code': 'FI'}]
 #print(stock_symbols)
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 # 使用列表推导式提取 code 的值
 symbols = [item['code'] for item in stock_symbols]

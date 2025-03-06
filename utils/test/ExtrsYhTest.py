@@ -15,8 +15,8 @@ print(df)
 
 # 示例股票列表
 #stock_symbols = ['AAPL', 'MSFT', 'GOOG', 'AMZN', 'TSLA']
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 stock_symbols = dataIns.getCommonData('stock_basic', ['code'], {}, '', '')
 extrs_util = ExtrsUtil()
 

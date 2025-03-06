@@ -9,11 +9,17 @@ matplotlib.use('TkAgg')  # 设置 Matplotlib 后端为 TkAgg
 import pandas as pd
 from data.DataBase import DataBase
 import logging.config
-
+import yaml
 
 # 连接到 IB TWS 或 IB Gateway（请确保已启动 TWS/IB Gateway 并启用 API 访问）
 ib = IB()
-ib.connect('104.194.79.173', 4001, clientId=2, timeout=30)  # 7497 是纸交易端口，7496 是真实交易端口
+config_file = '../config.yml'
+
+# 读取YAML配置文件
+with open(config_file, 'r', encoding='utf-8', errors='ignore') as file:
+    config = yaml.safe_load(file)
+# 7497 是纸交易端口，7496 是真实交易端口
+ib.connect(config['IBKR']['ip'], config['IBKR']['port'], clientId=1, timeout=30)
 
 
 # 加载配置文件
@@ -22,8 +28,7 @@ logging.config.fileConfig('../logging.conf')
 """
 查询指定名称的股票代码，把最近一天日期的价格数据都写入数据库stock_record
 """
-sina_config_file = '../config.yml'
-dataIns = DataBase(sina_config_file)
+dataIns = DataBase(config_file)
 
 # 当前日期
 current_date = datetime.now().date()

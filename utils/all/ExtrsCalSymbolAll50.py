@@ -6,8 +6,8 @@ import numpy as np
 # 调用函数计算 EXTRS，假设 N = 3
 N = 50
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 sql = f"select DISTINCT code from stock_record where code not in (select DISTINCT code from stock_extra where num=50)"
 stock_symbols = dataIns.getSqlData(sql)
 

@@ -9,8 +9,8 @@ from data.DataBase import DataBase
 # 调用函数计算 EXTRS，假设 N = 50 , 150, 250
 N = 250
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 # stock_symbols = dataIns.getCommonData('stock_basic', ['code'], {}, '', '')
 sql = f"select DISTINCT code from stock_record where code not in (select DISTINCT code from stock_extra where num=250)"
 stock_symbols = dataIns.getSqlData(sql)

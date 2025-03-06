@@ -9,8 +9,8 @@ from data.DataBase import DataBase
 # 调用函数计算 EXTRS，假设 N = 50 , 150, 250
 N = 50
 
-sina_config_file = '../../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../../config.yml'
+dataIns = DataBase(config_file)
 
 # query_conditions = {"num": N}
 # dates = dataIns.getDistinctCommonData('stock_extra', ['c_date'], query_conditions, 'c_date asc', '')

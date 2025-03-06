@@ -8,15 +8,22 @@ import time
 from decimal import Decimal, ROUND_DOWN
 import concurrent.futures
 from functools import partial
+import yaml
 
 # 连接到 IB TWS 或 IB Gateway
 ib = IB()
-ib.connect('104.194.79.173', 4001, clientId=1, timeout=30)
+config_file = '../config.yml'
+
+# 读取YAML配置文件
+with open(config_file, 'r', encoding='utf-8', errors='ignore') as file:
+    config = yaml.safe_load(file)
+
+ib.connect(config['IBKR']['ip'], config['IBKR']['port'], clientId=8, timeout=30)
 
 # 加载配置文件
 logging.config.fileConfig('../logging.conf')
-sina_config_file = '../config.yml'
-dataIns = DataBase(sina_config_file)
+
+dataIns = DataBase(config_file)
 
 # SQL 查询
 sql = "select DISTINCT code from stock_basic"

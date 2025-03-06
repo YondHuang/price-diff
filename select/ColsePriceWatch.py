@@ -1,8 +1,8 @@
 import pandas as pd
 from data.DataBase import DataBase
 
-sina_config_file = '../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../config.yml'
+dataIns = DataBase(config_file)
 
 N = 250
 # query_conditions = {"c_date": '2025-02-07'}

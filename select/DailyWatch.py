@@ -5,8 +5,8 @@ from data.DataBase import DataBase
 每日观察条件选股
 """
 
-sina_config_file = '../config.yml'
-dataIns = DataBase(sina_config_file)
+config_file = '../config.yml'
+dataIns = DataBase(config_file)
 
 #最近一天的记录时间是什么时候
 conditions = {"num": 150}

@@ -22,3 +22,7 @@ openFIGI:
 telegram:
   chatId: 7928824993
   tgToken: 78887bix58514:AAE9fCzdUfLoaMI5O71k4p9_P38z1s_yHUg
+##IB 配置
+IBKR:
+  ip: 104.194.79.173
+  port: 4001

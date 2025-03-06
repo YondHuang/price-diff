@@ -6,7 +6,7 @@ from ibapi.contract import Contract
 from ibapi.order import Order
 import pytz
 from datetime import datetime
-
+import yaml
 
 class MyEWrapper(EWrapper):
     def __init__(self, client):
@@ -108,8 +108,17 @@ class MyEClient(EClient):
 # 初始化客户端
 app = MyEClient(MyEWrapper(None))
 app.wrapper = MyEWrapper(app)
-# app.connect('127.0.0.1', 7497, clientId=1)
-app.connect('104.194.79.173', 4001, clientId=1)
+
+config_file = '../config.yml'
+
+# 读取YAML配置文件
+with open(config_file, 'r', encoding='utf-8', errors='ignore') as file:
+    config = yaml.safe_load(file)
+
+# 恐慌指数VIX查询
+# 连接 TWS（模拟账户端口 7497，真实账户端口 4002）
+
+app.connect(config['IBKR']['ip'], config['IBKR']['port'], clientId=1)
 
 time.sleep(1)
 
